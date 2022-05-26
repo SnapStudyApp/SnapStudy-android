@@ -14,6 +14,14 @@
         android:theme="@style/Theme.SnapStudyAndroid"
         tools:targetApi="31">
         <activity
+            android:name=".SettingsView"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".CameraView"
+            android:label="@string/title_activity_camera_view"
+            android:parentActivityName=".MainActivity" />
+            android:theme="@style/Theme.SnapStudyAndroid.NoActionBar" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
