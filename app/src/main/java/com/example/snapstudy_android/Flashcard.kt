@@ -1,8 +1,10 @@
 package com.example.snapstudy_android
 
-data class Flashcard(
-    val prompt: String,
-    val answer: String
+var flashcardList = mutableListOf<Flashcard>()
+class Flashcard(
+    var prompt: String,
+    var answer: String,
+    val id: Int? = flashcardList.size
 )
 
 
