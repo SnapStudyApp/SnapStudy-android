@@ -1,48 +1,64 @@
 package com.example.snapstudy_android
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
-import android.widget.Button
-import com.example.snapstudy_android.databinding.ActivityMainBinding
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+
+import com.example.snapstudy_android.fragments.CameraFragment
+import com.example.snapstudy_android.fragments.DashboardFragment
+import com.example.snapstudy_android.fragments.SettingsFragment
+import com.example.snapstudy_android.fragments.StudyFragment
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+//    private lateinit var binding: ActivityMainBinding
+
+    //Fragment values
+    private val dashboardFragment = DashboardFragment()
+    private val cameraFragment = CameraFragment()
+    private val studyFragment = StudyFragment()
+    private val settingsFragment = SettingsFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_main)
 
-        populateCards()
-
-        val mainActivity = this
-        binding.rvList.apply {
-            layoutManager =  GridLayoutManager(applicationContext, 2)
-            adapter = CardAdapter(flashcardList)
+        replaceFragments(dashboardFragment)
+        bottom_navigation.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.ic_dashboard -> replaceFragments(dashboardFragment)
+                R.id.ic_camera -> replaceFragments(cameraFragment)
+                R.id.ic_study -> replaceFragments(studyFragment)
+                R.id.ic_settings -> replaceFragments(settingsFragment)
+            }
+            true
         }
-        val btCamera: Button = findViewById(R.id.btCamera)
-        btCamera.setOnClickListener{
-            val intentC = Intent(this,CameraView::class.java)
-            startActivity(intentC)
-        }
+//        binding = ActivityMainBinding.inflate(layoutInflater)
+//        setContentView(binding.root)
+//
+//        populateCards()
+//
+//        val mainActivity = this
+//        binding.rvList.apply {
+//            layoutManager =  GridLayoutManager(applicationContext, 2)
+//            adapter = CardAdapter(flashcardList)
+//        }
 
-        val btStudy: Button = findViewById(R.id.btStudy)
-        btStudy.setOnClickListener {
-            val intentSt = Intent(this, StudyView::class.java)
-            startActivity(intentSt)
-        }
-
-        val btSettings: Button = findViewById((R.id.btSettings))
-
-        btSettings.setOnClickListener{
-            val intentS = Intent(this,SettingsView::class.java)
-            startActivity(intentS)
-        }
     }
 
+    //function to change fragments
+    private fun replaceFragments(fragment: Fragment){
+        //checking if fragment is null
+        if(fragment !=null){
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_container,fragment)
+            transaction.commit()
+
+        }
+    }
     private fun populateCards(){
         val card1 = Flashcard(prompt = "Hello", answer = "こんにちは")
         val card2 = Flashcard(prompt = "Thank you", answer = "ありがとうございました")
