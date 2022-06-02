@@ -4,13 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 
-import com.example.snapstudy_android.fragments.CameraFragment
-import com.example.snapstudy_android.fragments.DashboardFragment
-import com.example.snapstudy_android.fragments.SettingsFragment
-import com.example.snapstudy_android.fragments.StudyFragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.snapstudy_android.fragments.*
+
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_dashboard.*
+import java.security.AccessController.getContext
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         replaceFragments(dashboardFragment)
+
         bottom_navigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.ic_dashboard -> replaceFragments(dashboardFragment)

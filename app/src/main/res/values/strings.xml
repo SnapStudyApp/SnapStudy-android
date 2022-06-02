@@ -14,4 +14,6 @@
     <string name="prompt_placeholder">Prompt PlaceHolder</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="list_answer_placeholder">Answer Placeholder</string>
+    <string name="list_prompt_placeholder">Prompt Placeholder</string>
 </resources>
