@@ -16,4 +16,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="list_answer_placeholder">Answer Placeholder</string>
     <string name="list_prompt_placeholder">Prompt Placeholder</string>
+    <string name="flash_answer_placeholder">Answer</string>
+    <string name="flash_prompt_placeholder">Prompt</string>
 </resources>
